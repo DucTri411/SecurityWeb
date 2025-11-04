@@ -2,6 +2,7 @@
     <div class="container">
         <div class="login-box ptb--100">
             <form class="form-login" method="POST" action="">
+                <input type="hidden" name="csrf_token" value="<?= Csrf::token(); ?>">
                 <div class="login-form-head rounded-top">
                     <h4>Đăng Nhập</h4>
                     <p>Chào mừng bạn đến với trang quản trị của LSOUL</p>

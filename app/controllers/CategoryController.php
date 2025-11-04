@@ -25,6 +25,7 @@ class CategoryController
         }
         //POST
         elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Csrf::isValid($_POST['csrf_token'] ?? null)) { http_response_code(419); exit('Invalid CSRF'); }
             $categoryName = $_POST['categoryName'];
 
             $result = $this->categoryModel->addCategory($categoryName);
@@ -52,6 +53,7 @@ class CategoryController
         }
         //POST
         elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['categoryId'])) {
+            if (!Csrf::isValid($_POST['csrf_token'] ?? null)) { http_response_code(419); exit('Invalid CSRF'); }
             $categoryId = $_GET['categoryId'];
             $categoryName = $_POST['categoryName'];
 

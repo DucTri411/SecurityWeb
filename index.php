@@ -2,6 +2,8 @@
 require_once "app/config/config.php";
 require_once "app/utils/constants.php";
 require_once "app/utils/format.php";
+require_once "app/utils/csrf.php";
+require_once "app/utils/escaper.php";
 
 require_once "app/controllers/AuthController.php";
 require_once "app/controllers/GeneralController.php";

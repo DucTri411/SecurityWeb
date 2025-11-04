@@ -37,6 +37,7 @@ $messages = getAllMessages();
     <link rel="stylesheet" href="<?php echo BASE_PATH . '/app/public/assets/css/responsive.css' ?>" />
     <!-- modernizr css -->
     <script src="<?php echo BASE_PATH . '/app/public/assets/js/vendor/modernizr-2.8.3.min.js' ?>"></script>
+    <script src="<?php echo BASE_PATH . '/app/public/js/form-validate.js' ?>" defer></script>
 </head>
 
 <body>

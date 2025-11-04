@@ -13,23 +13,23 @@
 
         <?php foreach ($popularProducts as $product): ?>
             <div class="pro">
-                <img src="<?php echo BASE_PATH . '/' . $product['images'][0]['link'] ?>" alt="Sản phẩm 1"
-                    onclick="window.location='detail?productId=<?php echo $product['productId'] ?>'">
+                <img src="<?= e(BASE_PATH . '/' . $product['images'][0]['link']) ?>" alt="Sản phẩm 1"
+                    onclick="window.location='detail?productId=<?= e($product['productId']) ?>'">
                 <div class="des">
-                    <h4 onclick="window.location='detail?productId=<?php echo $product['productId'] ?>'">
-                        <?php echo $product['productName'] ?>
+                    <h4 onclick="window.location='detail?productId=<?= e($product['productId']) ?>'">
+                        <?= e($product['productName']) ?>
                     </h4>
-                    <h5 onclick="window.location='detail?productId=<?php echo $product['productId'] ?>'">
-                        <?php echo formatCurrencyVND($product['price']) ?>
+                    <h5 onclick="window.location='detail?productId=<?= e($product['productId']) ?>'">
+                        <?= e(formatCurrencyVND($product['price'])) ?>
                     </h5>
-                    <div class="star" onclick="window.location='detail?productId=<?php echo $product['productId'] ?>'">
+                    <div class="star" onclick="window.location='detail?productId=<?= e($product['productId']) ?>'">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <button class="cart add-to-cart" data-product-id="<?php echo $product['productId']; ?>"><i
+                    <button class="cart add-to-cart" data-product-id="<?= e($product['productId']); ?>"><i
                             class="fa-solid fa-cart-plus"></i></button>
                 </div>
             </div>
@@ -46,21 +46,21 @@
     <div class="pro-container">
         <?php foreach ($latestProducts as $product): ?>
             <div class="pro">
-                <img src="<?php echo BASE_PATH . '/' . $product['images'][0]['link'] ?>" alt="Sản phẩm 1"
-                    onclick="window.location='detail?productId=<?php echo $product['productId'] ?>'">
+                <img src="<?= e(BASE_PATH . '/' . $product['images'][0]['link']) ?>" alt="Sản phẩm 1"
+                    onclick="window.location='detail?productId=<?= e($product['productId']) ?>'">
                 <div class="des">
-                    <h4 onclick="window.location='detail?productId=<?php echo $product['productId'] ?>'">
-                        <?php echo $product['productName'] ?></h4>
-                    <h5 onclick="window.location='detail?productId=<?php echo $product['productId'] ?>'">
-                        <?php echo formatCurrencyVND($product['price']) ?></h5>
-                    <div onclick="window.location='detail?productId=<?php echo $product['productId'] ?>'" class="star">
+                    <h4 onclick="window.location='detail?productId=<?= e($product['productId']) ?>'">
+                        <?= e($product['productName']) ?></h4>
+                    <h5 onclick="window.location='detail?productId=<?= e($product['productId']) ?>'">
+                        <?= e(formatCurrencyVND($product['price'])) ?></h5>
+                    <div onclick="window.location='detail?productId=<?= e($product['productId']) ?>'" class="star">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <button class="cart add-to-cart" data-product-id="<?php echo $product['productId']; ?>"><i
+                    <button class="cart add-to-cart" data-product-id="<?= e($product['productId']); ?>"><i
                             class="fa-solid fa-cart-plus"></i></button>
                 </div>
             </div>

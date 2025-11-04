@@ -35,6 +35,7 @@ class ProductController
         }
         //POST
         elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Csrf::isValid($_POST['csrf_token'] ?? null)) { http_response_code(419); exit('Invalid CSRF'); }
             $productName = $_POST['productName'];
             $productDesc = $_POST['productDesc'];
             $price = $_POST['price'];
@@ -86,6 +87,7 @@ class ProductController
         }
         //POST
         elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['productId']) && ctype_digit($_GET['productId'])) {
+            if (!Csrf::isValid($_POST['csrf_token'] ?? null)) { http_response_code(419); exit('Invalid CSRF'); }
             $productId = $_GET['productId'];
             $productName = $_POST['productName'];
             $productDesc = $_POST['productDesc'];

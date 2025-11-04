@@ -24,6 +24,7 @@
                                         <td><?php echo $order['createdAt'] ?></td>
                                         <td>
                                             <form action="update-order-status" method="POST" class="status-form">
+                                                <input type="hidden" name="csrf_token" value="<?= Csrf::token(); ?>">
                                                 <input type="hidden" name="orderId"
                                                     value="<?php echo $order['orderId']; ?>">
                                                 <select name="status" id="status" style="background: none; border: none;">

@@ -15,6 +15,7 @@ $messages = getAllMessages();
     <title>Lsoul Fashion</title>
     <link rel="stylesheet" href="<?php echo BASE_PATH . '/app/public/css/style.css' ?>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="<?php echo BASE_PATH . '/app/public/js/form-validate.js' ?>" defer></script>
 </head>
 
 <body>
@@ -70,6 +71,7 @@ $messages = getAllMessages();
                 $.ajax({
                     url: `api/carts/add?productId=${productId}`,
                     method: 'GET',
+                    headers: { 'X-CSRF-Token': '<?= Csrf::token(); ?>' },
                     success: function (response) {
                         if (response.success) {
                             // loadHeader();
@@ -96,6 +98,7 @@ $messages = getAllMessages();
                 $.ajax({
                     url: `api/carts/add?productId=${productId}&quantity=${quantityVal}`,
                     method: 'GET',
+                    headers: { 'X-CSRF-Token': '<?= Csrf::token(); ?>' },
                     success: function (response) {
                         if (response.success) {
                             // loadHeader();
@@ -122,6 +125,7 @@ $messages = getAllMessages();
                 $.ajax({
                     url: `api/carts/add?productId=${productId}&quantity=${quantityVal}`,
                     method: 'GET',
+                    headers: { 'X-CSRF-Token': '<?= Csrf::token(); ?>' },
                     success: function (response) {
                         if (response.success) {
                             window.location = 'carts';

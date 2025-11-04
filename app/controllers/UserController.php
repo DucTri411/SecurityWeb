@@ -42,6 +42,7 @@ class UserController
         }
         //POST
         elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Csrf::isValid($_POST['csrf_token'] ?? null)) { http_response_code(419); exit('Invalid CSRF'); }
             $email = $_POST['email'];
             $password = $_POST['password'];
             $userName = $_POST['userName'];
@@ -78,6 +79,7 @@ class UserController
         }
         //POST
         elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['userId'])) {
+            if (!Csrf::isValid($_POST['csrf_token'] ?? null)) { http_response_code(419); exit('Invalid CSRF'); }
             $userId = $_GET['userId'];
             $userName = $_POST['userName'];
             $phone = $_POST['phone'];
@@ -156,6 +158,7 @@ class UserController
         }
         //POST
         elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Csrf::isValid($_POST['csrf_token'] ?? null)) { http_response_code(419); exit('Invalid CSRF'); }
             $userId = $_SESSION['userId'];
             $userName = $_POST['userName'];
             $phone = $_POST['phone'];
@@ -202,6 +205,8 @@ class UserController
     {
         header('Content-Type: application/json');
         try {
+            $headerToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? null;
+            if (!Csrf::isValid($headerToken)) { http_response_code(419); echo json_encode(['success'=>false,'message'=>'Invalid CSRF']); return; }
             $rawInput = file_get_contents('php://input');
             $data = json_decode($rawInput, true);
 
@@ -244,6 +249,7 @@ class UserController
         }
         //POST
         elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Csrf::isValid($_POST['csrf_token'] ?? null)) { http_response_code(419); exit('Invalid CSRF'); }
             $userId = $_SESSION['userId'];
             $oldPassword = $_POST['oldPassword'];
             $newPassword = $_POST['newPassword'];

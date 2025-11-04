@@ -191,11 +191,11 @@
     <!-- Chi tiết sản phẩm -->
     <div class="sanpham" id="12">
         <div class="product-image">
-            <img src="<?php echo $product['images'][0]['link']; ?>" alt="Sản phẩm">
+            <img src="<?= e($product['images'][0]['link']); ?>" alt="Sản phẩm">
         </div>
         <div class="product-info">
-            <h1><?php echo $product['productName']; ?></h1>
-            <p class="price"><?php echo formatCurrencyVND($product['price']); ?></p>
+            <h1><?= e($product['productName']); ?></h1>
+            <p class="price"><?= e(formatCurrencyVND($product['price'])); ?></p>
             <div class="star">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -204,10 +204,10 @@
                 <i class="fas fa-star"></i>
             </div>
             <br>
-            <p>Luợt xem: <?php echo $product['views']; ?></p>
-            <p>Danh mục: <?php echo $product['categoryName']; ?></p>
-            <p>Còn lại <b><?php echo $product['stock']; ?></b> sản phẩm</p>
-            <input type="hidden" name="stock" id="stock" value="<?php echo $product['stock']; ?>">
+            <p>Luợt xem: <?= e($product['views']); ?></p>
+            <p>Danh mục: <?= e($product['categoryName']); ?></p>
+            <p>Còn lại <b><?= e($product['stock']); ?></b> sản phẩm</p>
+            <input type="hidden" name="stock" id="stock" value="<?= e($product['stock']); ?>">
             <label for="quantity">Số lượng</label>
             <div class="quantity-controls">
                 <label id="decrease" class="quantity-btn">-</label>
@@ -216,9 +216,9 @@
             </div>
             <br>
             <div class="button-container">
-                <button id="btn-add-to-cart" data-product-id="<?php echo $product['productId']; ?>"><i
+                <button id="btn-add-to-cart" data-product-id="<?= e($product['productId']); ?>"><i
                         class="fa-solid fa-cart-shopping"></i></button>
-                <button id="btn-buy-now" data-product-id="<?php echo $product['productId']; ?>">Mua ngay</button>
+                <button id="btn-buy-now" data-product-id="<?= e($product['productId']); ?>">Mua ngay</button>
             </div>
         </div>
 
@@ -236,7 +236,7 @@
     <div id="detail" class="tab-content active">
         <h2><strong>Thông tin chi tiết sản phẩm</strong></h2>
         <p>
-            <?php echo $product['productDesc']; ?>
+            <?= e($product['productDesc']); ?>
         </p>
     </div>
 
@@ -338,9 +338,9 @@
             <h2>Sản phẩm gợi ý</h2>
             <?php foreach ($relativeProducts as $product): ?>
                 <a href="#" class="product">
-                    <img src="<?php echo $product['images'][0]['link'] ?>" alt="<?php echo $product['productName'] ?>">
-                    <p><?php echo $product['productName'] ?></p>
-                    <p><?php echo formatCurrencyVND($product['price']) ?></p>
+                    <img src="<?= e($product['images'][0]['link']) ?>" alt="<?= e($product['productName']) ?>">
+                    <p><?= e($product['productName']) ?></p>
+                    <p><?= e(formatCurrencyVND($product['price'])) ?></p>
                 </a>
             <?php endforeach; ?>
         </div>

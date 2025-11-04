@@ -8,6 +8,7 @@
                             <h4 class="header-title"><?php echo $action === 'add' ? 'Thêm' : 'Cập nhật' ?> sản phẩm
                             </h4>
                             <form action="" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="csrf_token" value="<?= Csrf::token(); ?>">
 
                                 <div class="form-group">
                                     <label for="productName" class="col-form-label">Tên Sản phẩm</label>

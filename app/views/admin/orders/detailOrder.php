@@ -108,6 +108,7 @@ switch ($order['status']) {
                                 <hr>
                                 <form action="update-order-status" method="POST"
                                     class="orderdetail-form-footer d-flex justify-content-center">
+                                    <input type="hidden" name="csrf_token" value="<?= Csrf::token(); ?>">
                                     <input type="hidden" name="orderId" value="<?php echo $order['orderId']; ?>">
                                     <input type="hidden" name="status" id="status">
 
