@@ -1,5 +1,5 @@
 <?php
-require_once "app/config/config.php"; // Đường dẫn file chứa các hằng số DB
+require_once "app/config/config.php";
 
 class DatabaseConnection
 {
@@ -11,7 +11,6 @@ class DatabaseConnection
 
     public function __construct()
     {
-        // Nếu bạn dùng .env thì có thể đọc từ đó thay vì hằng số
         $this->host = HOST;
         $this->db_name = DB_NAME;
         $this->username = USERNAME;
@@ -20,35 +19,29 @@ class DatabaseConnection
 
     public function getConnection()
     {
-        if ($this->conn) {
-            return $this->conn;
-        }
+        $this->conn = null;
+
+        // DSN chuẩn + charset
+        $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset=utf8mb4";
+
+        // Options bảo mật
+        $options = [
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,   // báo lỗi chuẩn
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,         // fetch mảng associative
+            PDO::ATTR_EMULATE_PREPARES   => false,                    // tắt fake prepare => ngăn SQLi tốt hơn
+        ];
 
         try {
-            // Thêm charset utf8mb4 để tránh lỗi Unicode
-            $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset=utf8mb4";
-
-            $options = [
-                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // Hiển thị lỗi dưới dạng Exception
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,       // Mặc định trả về mảng kết hợp
-                PDO::ATTR_EMULATE_PREPARES   => false,                 // Tăng bảo mật (chuẩn bị thật)
-            ];
-
             $this->conn = new PDO($dsn, $this->username, $this->password, $options);
         } catch (PDOException $e) {
-            // Không echo lỗi ra màn hình (vì có thể lộ thông tin)
-            error_log("Database connection error: " . $e->getMessage(), 0);
-            die("Không thể kết nối cơ sở dữ liệu, vui lòng thử lại sau.");
+            if (defined('DEBUG') && DEBUG === true) {
+                echo "Connection error: " . $e->getMessage();
+            } else {
+                echo "Database connection failed.";
+            }
         }
 
         return $this->conn;
     }
-}
-
-// --- Cấu hình session an toàn cho toàn hệ thống ---
-if (session_status() === PHP_SESSION_NONE) {
-    ini_set('session.cookie_httponly', 1);
-    ini_set('session.cookie_samesite', 'Strict');
-    session_start();
 }
 ?>
