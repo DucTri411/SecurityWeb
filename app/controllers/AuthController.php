@@ -5,6 +5,9 @@ require_once 'app/utils/flashMessage.php';
 
 class AuthController
 {
+    /* ==============================
+        USER LOGIN
+    ============================== */
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -13,62 +16,80 @@ class AuthController
             return;
         }
 
-        $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
-        $password = $_POST['password'] ?? '';
+        // POST
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
         $userModel = new UserModel();
         $existUser = $userModel->getUserByEmail($email);
 
-<<<<<<< HEAD
-=======
-        // 🧱 Kiểm tra tài khoản có tồn tại không
->>>>>>> 0adec7a (first commit)
         if (!$existUser) {
-            setErrorMessage('Tài khoản chưa tồn tại.');
+            setErrorMessage('Tài khoản chưa tồn tại');
             header('location: login');
             exit;
         }
 
-<<<<<<< HEAD
-=======
-        // 🔐 Kiểm tra tài khoản có bị khóa không
->>>>>>> 0adec7a (first commit)
-        if ($userModel->isLocked($existUser)) {
-            setErrorMessage('Tài khoản của bạn đang bị khóa tạm thời do đăng nhập sai nhiều lần. Vui lòng thử lại sau 15 phút.');
+        /* ✅ CHECK LOCKOUT */
+        if ($existUser['locked_until'] && strtotime($existUser['locked_until']) > time()) {
+            setErrorMessage('Tài khoản đang bị khóa tạm thời. Vui lòng thử lại sau.');
             header('location: login');
             exit;
         }
 
-<<<<<<< HEAD
-=======
-        // 🧩 Xác minh mật khẩu
->>>>>>> 0adec7a (first commit)
+        /* ✅ CHECK PASSWORD */
         if (password_verify($password, $existUser['password'])) {
-            // Thành công → reset số lần sai
+
+            // ✅ Reset failed attempts
             $userModel->resetFailedAttempts($existUser['userId']);
 
+            // ✅ CREATE SESSION
+            session_regenerate_id(true);
             $_SESSION['auth'] = true;
             $_SESSION['userId'] = $existUser['userId'];
 
-            setSuccessMessage('Đăng nhập thành công.');
+            setSuccessMessage('Đăng nhập thành công');
             header('Location: ' . BASE_PATH . '/');
             exit;
-        } else {
-            // Sai mật khẩu → tăng biến failed_attempts
-            $userModel->incrementFailedAttempts($existUser['userId']);
 
-            setErrorMessage('Mật khẩu không đúng.');
+        } else {
+
+            // ✅ WRONG PASSWORD → INCREASE FAILED ATTEMPTS
+            $userModel->increaseFailedAttempts($existUser['userId']);
+
+            setErrorMessage('Mật khẩu không đúng');
             header('location: login');
             exit;
         }
     }
 
+    /* ==============================
+        USER LOGOUT
+    ============================== */
     public function logout()
     {
-        unset($_SESSION['auth'], $_SESSION['userId']);
-        header('Location: login');
+        // ✅ Destroy only relevant session keys
+        unset($_SESSION['auth']);
+        unset($_SESSION['userId']);
+
+        // ✅ Clear session cookie
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
+        // ✅ Destroy session
+        session_destroy();
+
+        header("Location: login");
+        exit;
     }
 
+    /* ==============================
+        USER SIGNUP
+    ============================== */
     public function signup()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -77,30 +98,32 @@ class AuthController
             return;
         }
 
-        $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
-        $password = $_POST['password'] ?? '';
+        // POST
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
         $userModel = new UserModel();
         $existUser = $userModel->getUserByEmail($email);
 
         if ($existUser) {
-            setErrorMessage('Tài khoản đã tồn tại.');
-            header('location: signup');
-            exit;
-        }
-
-        $result = $userModel->registerUser($email, $password);
-        if ($result) {
-            setSuccessMessage('Đăng ký thành công.');
-            header('Location: login');
-            exit;
-        } else {
-            setErrorMessage('Đăng ký thất bại.');
+            setErrorMessage('Email đã tồn tại');
             header('Location: signup');
             exit;
         }
+
+        // ✅ HASH PASSWORD
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $userModel->registerUser($email, $hashedPassword);
+
+        setSuccessMessage('Đăng ký thành công');
+        header('Location: login');
+        exit;
     }
 
+    /* ==============================
+        ADMIN LOGIN
+    ============================== */
     public function loginAdmin()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -110,56 +133,59 @@ class AuthController
             return;
         }
 
-        $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
-        $password = $_POST['password'] ?? '';
+        // POST
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
         $userModel = new UserModel();
         $existUser = $userModel->getUserByEmail($email);
 
-<<<<<<< HEAD
-=======
-        // 🧱 Kiểm tra tài khoản admin có tồn tại
->>>>>>> 0adec7a (first commit)
         if (!$existUser || !$existUser['isAdmin']) {
-            setErrorMessage('Tài khoản không tồn tại hoặc không có quyền admin.');
+            setErrorMessage('Tài khoản không hợp lệ');
             header('location: login');
             exit;
         }
 
-<<<<<<< HEAD
-=======
-        // 🔐 Kiểm tra tài khoản có bị khóa không
->>>>>>> 0adec7a (first commit)
-        if ($userModel->isLocked($existUser)) {
-            setErrorMessage('Tài khoản admin bị khóa tạm thời do đăng nhập sai nhiều lần. Vui lòng thử lại sau 15 phút.');
+        // ✅ CHECK LOCKOUT
+        if ($existUser['locked_until'] && strtotime($existUser['locked_until']) > time()) {
+            setErrorMessage('Tài khoản admin đang bị khóa.');
             header('location: login');
             exit;
         }
 
-<<<<<<< HEAD
-=======
-        // 🧩 Xác minh mật khẩu
->>>>>>> 0adec7a (first commit)
         if (password_verify($password, $existUser['password'])) {
+
+            // ✅ Reset fail count
             $userModel->resetFailedAttempts($existUser['userId']);
 
+            session_regenerate_id(true);
             $_SESSION['authAdmin'] = true;
-            $_SESSION['userId'] = $existUser['userId'];
-            setSuccessMessage('Đăng nhập admin thành công.');
+
+            setSuccessMessage('Đăng nhập thành công');
             header('Location: ' . BASE_PATH . '/admin');
             exit;
+
         } else {
-            $userModel->incrementFailedAttempts($existUser['userId']);
-            setErrorMessage('Mật khẩu không đúng.');
+
+            $userModel->increaseFailedAttempts($existUser['userId']);
+
+            setErrorMessage('Sai mật khẩu');
             header('location: login');
             exit;
         }
     }
 
+    /* ==============================
+        ADMIN LOGOUT
+    ============================== */
     public function logoutAdmin()
     {
         unset($_SESSION['authAdmin']);
-        header('Location: login');
+
+        session_destroy();
+
+        header("Location: login");
+        exit;
     }
 }
 ?>
