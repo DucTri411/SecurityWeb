@@ -11,10 +11,7 @@ class UserModel
         $this->conn = $db->getConnection();
     }
 
-    /* =============================
-        GET USER FUNCTIONS
-    ============================= */
-
+        // get user func
     public function getUserByEmail($email)
     {
         $stmt = $this->conn->prepare("
@@ -51,10 +48,7 @@ class UserModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    /* =============================
-        REGISTER / ADD
-    ============================= */
-
+    // Register
     public function registerUser($email, $password)
     {
         $stmt = $this->conn->prepare("
@@ -84,10 +78,7 @@ class UserModel
         return $this->conn->lastInsertId();
     }
 
-    /* =============================
-        UPDATE
-    ============================= */
-
+    //update
     public function updateUserContact($userId, $userName, $phone, $city, $district, $ward, $street)
     {
         $stmt = $this->conn->prepare("
@@ -156,10 +147,7 @@ class UserModel
         return $stmt->rowCount() > 0;
     }
 
-    /* =============================
-        DELETE USER
-    ============================= */
-
+    //delete
     public function deleteUser($userId)
     {
         $stmt = $this->conn->prepare("
@@ -171,10 +159,7 @@ class UserModel
         return $stmt->rowCount();
     }
 
-    /* =============================
-        LOCKOUT FEATURES
-    ============================= */
-
+    //lockout feature
     public function increaseFailedAttempts($userId)
     {
         $stmt = $this->conn->prepare("
@@ -202,10 +187,7 @@ class UserModel
         return $stmt->execute([':userId' => $userId]);
     }
 
-    /* =============================
-        ADMIN GET ALL USERS
-    ============================= */
-
+    //get all users (admin)
     public function getAllUsers()
     {
         $stmt = $this->conn->prepare("

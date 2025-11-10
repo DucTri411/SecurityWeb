@@ -5,9 +5,7 @@ require_once 'app/utils/flashMessage.php';
 
 class AuthController
 {
-    /* ==============================
-        USER LOGIN
-    ============================== */
+    // login
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -29,20 +27,21 @@ class AuthController
             exit;
         }
 
-        /* ✅ CHECK LOCKOUT */
-        if ($existUser['locked_until'] && strtotime($existUser['locked_until']) > time()) {
+        // check lockout
+        if (isset($existUser['locked_until']) && $existUser['locked_until'] !== null && strtotime($existUser['locked_until']) > time()) {
             setErrorMessage('Tài khoản đang bị khóa tạm thời. Vui lòng thử lại sau.');
-            header('location: login');
+            header('Location: login');
             exit;
         }
 
-        /* ✅ CHECK PASSWORD */
+
+        // check password
         if (password_verify($password, $existUser['password'])) {
 
-            // ✅ Reset failed attempts
+            // Reset failed attempts
             $userModel->resetFailedAttempts($existUser['userId']);
 
-            // ✅ CREATE SESSION
+            // create session
             session_regenerate_id(true);
             $_SESSION['auth'] = true;
             $_SESSION['userId'] = $existUser['userId'];
@@ -53,7 +52,7 @@ class AuthController
 
         } else {
 
-            // ✅ WRONG PASSWORD → INCREASE FAILED ATTEMPTS
+            // wrong password --> Increase Failed Attempts
             $userModel->increaseFailedAttempts($existUser['userId']);
 
             setErrorMessage('Mật khẩu không đúng');
@@ -62,16 +61,14 @@ class AuthController
         }
     }
 
-    /* ==============================
-        USER LOGOUT
-    ============================== */
+    // user logout
     public function logout()
     {
-        // ✅ Destroy only relevant session keys
+        // Destroy only relevant session keys
         unset($_SESSION['auth']);
         unset($_SESSION['userId']);
 
-        // ✅ Clear session cookie
+        // Clear session cookie
         if (ini_get("session.use_cookies")) {
             $params = session_get_cookie_params();
             setcookie(session_name(), '', time() - 42000,
@@ -80,16 +77,14 @@ class AuthController
             );
         }
 
-        // ✅ Destroy session
+        // Destroy session
         session_destroy();
 
         header("Location: login");
         exit;
     }
 
-    /* ==============================
-        USER SIGNUP
-    ============================== */
+    //user signup
     public function signup()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -111,7 +106,7 @@ class AuthController
             exit;
         }
 
-        // ✅ HASH PASSWORD
+        // hash pass
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $userModel->registerUser($email, $hashedPassword);
@@ -121,9 +116,7 @@ class AuthController
         exit;
     }
 
-    /* ==============================
-        ADMIN LOGIN
-    ============================== */
+    //admin login
     public function loginAdmin()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -146,16 +139,16 @@ class AuthController
             exit;
         }
 
-        // ✅ CHECK LOCKOUT
-        if ($existUser['locked_until'] && strtotime($existUser['locked_until']) > time()) {
-            setErrorMessage('Tài khoản admin đang bị khóa.');
-            header('location: login');
+        // check logout
+        if (isset($existUser['locked_until']) && $existUser['locked_until'] !== null && strtotime($existUser['locked_until']) > time()) {
+            setErrorMessage('Tài khoản đang bị khóa tạm thời. Vui lòng thử lại sau.');
+            header('Location: login');
             exit;
         }
 
         if (password_verify($password, $existUser['password'])) {
 
-            // ✅ Reset fail count
+            // reset fail count
             $userModel->resetFailedAttempts($existUser['userId']);
 
             session_regenerate_id(true);
@@ -175,9 +168,7 @@ class AuthController
         }
     }
 
-    /* ==============================
-        ADMIN LOGOUT
-    ============================== */
+    //admin logout
     public function logoutAdmin()
     {
         unset($_SESSION['authAdmin']);
