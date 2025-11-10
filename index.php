@@ -1,4 +1,7 @@
 <?php
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/error.log');
+
 require_once "app/config/config.php";
 require_once "app/utils/constants.php";
 require_once "app/utils/format.php";
@@ -11,20 +14,44 @@ require_once "app/controllers/CategoryController.php";
 require_once "app/controllers/OrderController.php";
 require_once "app/controllers/CartController.php";
 
+// --- Đoạn xử lý URI chuẩn cho SecurityWeb trong htdocs ---
+// --- Chuẩn hóa URI cho SecurityWeb trong htdocs ---
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$uri = str_replace(BASE_PATH, '', $uri);
+
+// Xóa tiền tố thư mục con nếu có
+$subfolder = '/SecurityWeb';
+if (strpos($uri, $subfolder) === 0) {
+    $uri = substr($uri, strlen($subfolder));
+}
+
+// Bỏ dấu / thừa ở đầu và cuối (để tránh URI trống)
+$uri = trim($uri, '/');
+
+// Nếu sau khi xử lý mà rỗng -> gán lại "/"
+if ($uri === '' || $uri === false) {
+    $uri = '/';
+} else {
+    // Thêm lại dấu / ở đầu để switch-case hoạt động
+    $uri = '/' . $uri;
+}
+
+// Ghi log kiểm tra
+error_log(">>> URI RAW: " . $_SERVER['REQUEST_URI']);
+error_log(">>> URI FINAL (fixed): " . $uri);
+
+
+
 
 session_start();
 
-function isAuthenticationAdmin() //check if user is login or not
-{
-    return $_SESSION['authAdmin'] === true;
+function isAuthenticationAdmin() {
+    return isset($_SESSION['authAdmin']) && $_SESSION['authAdmin'] === true;
 }
 
-function isAuthentication()
-{
-    return $_SESSION['auth'] === true;
+function isAuthentication() {
+    return isset($_SESSION['auth']) && $_SESSION['auth'] === true;
 }
+
 
 if (in_array($uri, PROTECTED_ROUTES)) { //if uri in protectedRoutes => check login
     //route admin and not authentication for admin

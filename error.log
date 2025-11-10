@@ -1,0 +1,134 @@
+[06-Nov-2025 08:36:47 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 08:36:47 Europe/Berlin] >>> URI FINAL: 
+[06-Nov-2025 08:37:09 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 08:37:09 Europe/Berlin] >>> URI FINAL: 
+[06-Nov-2025 08:38:44 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 08:38:44 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 08:38:58 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php:150
+Stack trace:
+#0 C:\xampp\htdocs\SecurityWeb\app\controllers\GeneralController.php(19): ProductModel->getLatestProducts()
+#1 C:\xampp\htdocs\SecurityWeb\index.php(247): GeneralController->home()
+#2 {main}
+  thrown in C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php on line 150
+[06-Nov-2025 08:39:15 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 08:39:15 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 08:44:02 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 08:44:02 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 08:44:27 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 08:44:27 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 08:49:09 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 08:49:09 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 08:49:59 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 08:49:59 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 08:50:08 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 08:50:08 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 08:50:09 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 08:50:09 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 08:52:08 Europe/Berlin] PHP Warning:  Uncaught PDOException: PDO::__construct(): Error while reading greeting packet. PID=31776 in C:\xampp\htdocs\SecurityWeb\app\config\DatabaseConnection.php:35
+Stack trace:
+#0 C:\xampp\htdocs\SecurityWeb\app\config\DatabaseConnection.php(35): PDO->__construct('mysql:host=loca...', 'webapp_user', 'StrongP@ssw0rd!', Array)
+#1 C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php(13): DatabaseConnection->getConnection()
+#2 C:\xampp\htdocs\SecurityWeb\app\controllers\GeneralController.php(16): ProductModel->__construct()
+#3 C:\xampp\htdocs\SecurityWeb\index.php(247): GeneralController->home()
+#4 {main}
+
+Next PDOException: SQLSTATE[HY000] [2006] MySQL server has gone away in C:\xampp\htdocs\SecurityWeb\app\config\DatabaseConnection.php:35
+Stack trace:
+#0 C:\xampp\htdocs\SecurityWeb\app\config\DatabaseConnection.php(35): PDO->__construct('mysql:host=loca...', 'webapp_user', 'StrongP@ssw0rd!', Array)
+#1 C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php(13): DatabaseConnection->getConnection()
+#2 C:\xampp\htdocs\SecurityWeb\app\controllers\GeneralController.php(16): ProductModel->__construct()
+#3 C:\xampp\htdocs\SecurityWeb\index.php(247): GeneralController->home()
+#4 {main}
+  thrown in C:\xampp\htdocs\SecurityWeb\app\config\DatabaseConnection.php on line 35
+[06-Nov-2025 08:52:08 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\SecurityWeb\app\config\DatabaseConnection.php on line 36
+[06-Nov-2025 08:52:08 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\SecurityWeb\index.php on line 56
+[06-Nov-2025 08:52:08 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\SecurityWeb\index.php on line 56
+[06-Nov-2025 08:52:08 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\SecurityWeb\index.php on line 56
+[06-Nov-2025 08:52:08 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\SecurityWeb\index.php on line 56
+[06-Nov-2025 08:52:08 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\SecurityWeb\index.php on line 56
+[06-Nov-2025 08:52:11 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 08:52:11 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 08:52:19 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php:150
+Stack trace:
+#0 C:\xampp\htdocs\SecurityWeb\app\controllers\GeneralController.php(21): ProductModel->getLatestProducts()
+#1 C:\xampp\htdocs\SecurityWeb\index.php(247): GeneralController->home()
+#2 {main}
+  thrown in C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php on line 150
+[06-Nov-2025 08:52:45 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 08:52:45 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 08:52:46 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 08:52:46 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 09:28:03 Europe/Berlin] PHP Warning:  Uncaught PDOException: PDO::__construct(): Error while reading greeting packet. PID=16688 in C:\xampp\htdocs\SecurityWeb\app\config\DatabaseConnection.php:35
+Stack trace:
+#0 C:\xampp\htdocs\SecurityWeb\app\config\DatabaseConnection.php(35): PDO->__construct('mysql:host=loca...', 'webapp_user', 'StrongP@ssw0rd!', Array)
+#1 C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php(13): DatabaseConnection->getConnection()
+#2 C:\xampp\htdocs\SecurityWeb\app\controllers\GeneralController.php(18): ProductModel->__construct()
+#3 C:\xampp\htdocs\SecurityWeb\index.php(247): GeneralController->home()
+#4 {main}
+
+Next PDOException: SQLSTATE[HY000] [2006] MySQL server has gone away in C:\xampp\htdocs\SecurityWeb\app\config\DatabaseConnection.php:35
+Stack trace:
+#0 C:\xampp\htdocs\SecurityWeb\app\config\DatabaseConnection.php(35): PDO->__construct('mysql:host=loca...', 'webapp_user', 'StrongP@ssw0rd!', Array)
+#1 C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php(13): DatabaseConnection->getConnection()
+#2 C:\xampp\htdocs\SecurityWeb\app\controllers\GeneralController.php(18): ProductModel->__construct()
+#3 C:\xampp\htdocs\SecurityWeb\index.php(247): GeneralController->home()
+#4 {main}
+  thrown in C:\xampp\htdocs\SecurityWeb\app\config\DatabaseConnection.php on line 35
+[06-Nov-2025 09:28:03 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\SecurityWeb\app\config\DatabaseConnection.php on line 36
+[06-Nov-2025 09:28:03 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\SecurityWeb\index.php on line 56
+[06-Nov-2025 14:44:51 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 14:44:51 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 14:44:52 Europe/Berlin] >>> URI RAW: /SecurityWeb/api/carts/count
+[06-Nov-2025 14:44:52 Europe/Berlin] >>> URI FINAL (fixed): /api/carts/count
+[06-Nov-2025 14:54:12 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 14:54:12 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 14:54:12 Europe/Berlin] >>> URI RAW: /SecurityWeb/api/carts/count
+[06-Nov-2025 14:54:12 Europe/Berlin] >>> URI FINAL (fixed): /api/carts/count
+[06-Nov-2025 15:15:50 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 15:15:50 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 15:16:01 Europe/Berlin] >>> URI RAW: /SecurityWeb/detail?productId=9
+[06-Nov-2025 15:16:01 Europe/Berlin] >>> URI FINAL (fixed): /detail
+[06-Nov-2025 15:16:02 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php:135
+Stack trace:
+#0 C:\xampp\htdocs\SecurityWeb\app\controllers\GeneralController.php(19): ProductModel->getLatestProducts()
+#1 C:\xampp\htdocs\SecurityWeb\index.php(247): GeneralController->home()
+#2 {main}
+  thrown in C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php on line 135
+[06-Nov-2025 15:16:03 Europe/Berlin] >>> URI RAW: /SecurityWeb/detail?productId=9
+[06-Nov-2025 15:16:03 Europe/Berlin] >>> URI FINAL (fixed): /detail
+[06-Nov-2025 15:16:03 Europe/Berlin] >>> URI RAW: /SecurityWeb/detail?productId=4
+[06-Nov-2025 15:16:03 Europe/Berlin] >>> URI FINAL (fixed): /detail
+[06-Nov-2025 15:16:04 Europe/Berlin] >>> URI RAW: /SecurityWeb/detail?productId=9
+[06-Nov-2025 15:16:04 Europe/Berlin] >>> URI FINAL (fixed): /detail
+[06-Nov-2025 15:16:05 Europe/Berlin] >>> URI RAW: /SecurityWeb/detail?productId=15
+[06-Nov-2025 15:16:05 Europe/Berlin] >>> URI FINAL (fixed): /detail
+[06-Nov-2025 15:16:15 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 15:16:15 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 15:16:16 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 15:16:16 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 15:16:17 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 15:16:17 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 15:16:19 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function beginTransaction() on null in C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php:32
+Stack trace:
+#0 C:\xampp\htdocs\SecurityWeb\app\controllers\ProductController.php(217): ProductModel->getProductDetailById('9')
+#1 C:\xampp\htdocs\SecurityWeb\index.php(176): ProductController->detail()
+#2 {main}
+  thrown in C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php on line 32
+[06-Nov-2025 15:16:35 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function beginTransaction() on null in C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php:32
+Stack trace:
+#0 C:\xampp\htdocs\SecurityWeb\app\controllers\ProductController.php(217): ProductModel->getProductDetailById('9')
+#1 C:\xampp\htdocs\SecurityWeb\index.php(176): ProductController->detail()
+#2 {main}
+  thrown in C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php on line 32
+[06-Nov-2025 15:16:45 Europe/Berlin] >>> URI RAW: /SecurityWeb/
+[06-Nov-2025 15:16:45 Europe/Berlin] >>> URI FINAL (fixed): /
+[06-Nov-2025 15:16:47 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function beginTransaction() on null in C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php:32
+Stack trace:
+#0 C:\xampp\htdocs\SecurityWeb\app\controllers\ProductController.php(217): ProductModel->getProductDetailById('4')
+#1 C:\xampp\htdocs\SecurityWeb\index.php(176): ProductController->detail()
+#2 {main}
+  thrown in C:\xampp\htdocs\SecurityWeb\app\models\ProductModel.php on line 32
+[06-Nov-2025 15:16:48 Europe/Berlin] >>> URI RAW: /SecurityWeb/api/carts/count
+[06-Nov-2025 15:16:48 Europe/Berlin] >>> URI FINAL (fixed): /api/carts/count
+[06-Nov-2025 15:16:48 Europe/Berlin] >>> URI RAW: /SecurityWeb/api/carts/count
+[06-Nov-2025 15:16:48 Europe/Berlin] >>> URI FINAL (fixed): /api/carts/count
