@@ -43,6 +43,7 @@ class OrderController
     public function updateOrderStatus()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Csrf::isValid($_POST['csrf_token'] ?? null)) { http_response_code(419); exit('Invalid CSRF'); }
             $orderId = $_POST['orderId'];
             $status = $_POST['status'];
             $referrer = $_SERVER['HTTP_REFERER'] ?? 'orders';
@@ -77,6 +78,7 @@ class OrderController
     public function checkoutDelivery()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Csrf::isValid($_POST['csrf_token'] ?? null)) { http_response_code(419); exit('Invalid CSRF'); }
             $userId = $_SESSION['userId'];
             $userName = $_POST['userName'];
             $phone = $_POST['phone'];
@@ -135,6 +137,7 @@ class OrderController
     public function makeOrder()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Csrf::isValid($_POST['csrf_token'] ?? null)) { http_response_code(419); exit('Invalid CSRF'); }
             $userId = $_SESSION['userId'];
             $shippingCost = $_SESSION["shippingCost_$userId"];
             $orderUser = $_SESSION["orderUser_$userId"];

@@ -41,6 +41,8 @@ class CartController
     {
         header('Content-Type: application/json');
         try {
+            $headerToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? null;
+            if (!Csrf::isValid($headerToken)) { http_response_code(419); echo json_encode(['success'=>false,'message'=>'Invalid CSRF']); return; }
             $userId = $_SESSION['userId'];
             if (!validateParamIds($_GET['productId'])) {
                 header('Location: notfound');

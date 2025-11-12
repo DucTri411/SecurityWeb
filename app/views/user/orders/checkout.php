@@ -3,6 +3,7 @@
         <div class="delivery-details">
             <h2>Thông Tin Giao Hàng</h2>
             <form method="POST" action="checkout-delivery">
+                <input type="hidden" name="csrf_token" value="<?= Csrf::token(); ?>">
                 <label for="userName">TÊN <span>*</span></label>
                 <input type="text" id="userName" name="userName" placeholder="Nhập tên"
                     value="<?php echo $user['userName'] ?>" required>

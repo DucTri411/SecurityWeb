@@ -1,4 +1,5 @@
 <form id="makeOrder" action="make-order" method="POST">
+    <input type="hidden" name="csrf_token" value="<?= Csrf::token(); ?>">
     <input type="hidden" name="paymentMethod" id="paymentMethod">
 </form>
 <div class="checkout3-container">

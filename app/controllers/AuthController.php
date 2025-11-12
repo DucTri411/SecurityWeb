@@ -13,10 +13,11 @@ class AuthController
             require_once 'app/views/layout.php';
             return;
         }
-
-        // POST
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        //POST
+        elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Csrf::isValid($_POST['csrf_token'] ?? null)) { http_response_code(419); exit('Invalid CSRF'); }
+            $email = $_POST['email'];
+            $password = $_POST['password'];
 
         $userModel = new UserModel();
         $existUser = $userModel->getUserByEmail($email);
@@ -92,10 +93,11 @@ class AuthController
             require_once 'app/views/layout.php';
             return;
         }
-
-        // POST
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        //POST
+        elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Csrf::isValid($_POST['csrf_token'] ?? null)) { http_response_code(419); exit('Invalid CSRF'); }
+            $email = $_POST['email'];
+            $password = $_POST['password'];
 
         $userModel = new UserModel();
         $existUser = $userModel->getUserByEmail($email);
@@ -125,10 +127,11 @@ class AuthController
             require_once 'app/views/admin/adminLayout.php';
             return;
         }
-
-        // POST
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        //POST
+        elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Csrf::isValid($_POST['csrf_token'] ?? null)) { http_response_code(419); exit('Invalid CSRF'); }
+            $email = $_POST['email'];
+            $password = $_POST['password'];
 
         $userModel = new UserModel();
         $existUser = $userModel->getUserByEmail($email);

@@ -3,6 +3,7 @@
 <div class="form-container">
     <h2 class="form-title">Cập Nhật Mật Khẩu</h2>
     <form class="customer-form" action="" method="POST">
+        <input type="hidden" name="csrf_token" value="<?= Csrf::token(); ?>">
         <div class="input-group">
             <label for="oldPassword">Mật khẩu cũ</label>
             <div class="input-wrapper">

@@ -3,6 +3,7 @@
 <div class="form-container">
     <h2 class="form-title">Cập Nhật Thông Tin</h2>
     <form class="customer-form" action="" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="<?= Csrf::token(); ?>">
         <div class="input-group">
             <label for="userName">Họ và Tên</label>
             <div class="input-wrapper">

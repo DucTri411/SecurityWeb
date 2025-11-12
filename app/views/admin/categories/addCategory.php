@@ -8,6 +8,7 @@
                             <h4 class="header-title"><?php echo $action === 'add' ? 'Thêm' : 'Cập nhật' ?> danh mục
                             </h4>
                             <form action="" method="POST">
+                                <input type="hidden" name="csrf_token" value="<?= Csrf::token(); ?>">
                                 <div class="form-group">
                                     <label for="categoryName" class="col-form-label">Tên Danh mục</label>
                                     <input class="form-control" type="text"
