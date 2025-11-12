@@ -61,6 +61,7 @@ class AuthController
             exit;
         }
     }
+}
 
     // user logout
     public function logout()
@@ -117,6 +118,7 @@ class AuthController
         header('Location: login');
         exit;
     }
+}
 
     //admin login
     public function loginAdmin()
@@ -170,7 +172,7 @@ class AuthController
             exit;
         }
     }
-
+    }
     //admin logout
     public function logoutAdmin()
     {
