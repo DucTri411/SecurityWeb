@@ -132,3 +132,7 @@ Stack trace:
 [06-Nov-2025 15:16:48 Europe/Berlin] >>> URI FINAL (fixed): /api/carts/count
 [06-Nov-2025 15:16:48 Europe/Berlin] >>> URI RAW: /SecurityWeb/api/carts/count
 [06-Nov-2025 15:16:48 Europe/Berlin] >>> URI FINAL (fixed): /api/carts/count
+[22-Nov-2025 15:29:56 Europe/Berlin] >>> URI RAW: /SecurityWeb/login
+[22-Nov-2025 15:29:56 Europe/Berlin] >>> URI FINAL (fixed): /login
+[22-Nov-2025 15:29:57 Europe/Berlin] >>> URI RAW: /SecurityWeb/api/carts/count
+[22-Nov-2025 15:29:57 Europe/Berlin] >>> URI FINAL (fixed): /api/carts/count

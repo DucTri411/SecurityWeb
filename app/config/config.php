@@ -1,5 +1,4 @@
 <?php
-// app/config/config.php
 
 $envPath = dirname(__DIR__, 2) . '/.env';
 if (file_exists($envPath)) {
@@ -25,11 +24,7 @@ define('HOST', $_ENV['DB_HOST'] ?? getenv('DB_HOST'));
 define('DB_NAME', $_ENV['DB_NAME'] ?? getenv('DB_NAME'));
 define('USERNAME', $_ENV['DB_USER'] ?? getenv('DB_USER'));
 define('PASSWORD', $_ENV['DB_PASS'] ?? getenv('DB_PASS'));
-
-// Đường dẫn gốc
 define('BASE_PATH', 'http://localhost/SecurityWeb');
-
-// Chế độ debug
 define('DEBUG', true);
 
 ?>
