@@ -1,7 +1,14 @@
-# Enable URL rewriting
+# ==========================
+# .htaccess for SecurityWeb
+# ==========================
+
+Options +FollowSymLinks
 RewriteEngine On
 
-# Remove "index.php" from the URL
+# 🧭 Project nằm trong thư mục con /SecurityWeb/
+RewriteBase /SecurityWeb/
+
+# 🔄 Nếu file hoặc folder không tồn tại → chuyển về index.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php [L]
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
